@@ -402,7 +402,7 @@ def test_request_line_split_issue_1220(test_client):
 def test_parse_invalid_line_fold(test_client):
     """Check that the first field line can't begin with whitespace."""
     c = test_client.get_connection()
-    c._output(u'GET / HTTP/1.1\r\n invalid\r\n\r\n'.encode('utf-8'))
+    c._output(b'GET / HTTP/1.1\r\n invalid\r\n\r\n')
     c._send_output()
     response = _get_http_response(c, method='GET')
     response.begin()
